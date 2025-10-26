@@ -10,19 +10,23 @@ import discord4j.core.object.entity.channel.MessageChannel;
 /**
  * Дискорд бот
  */
-public class DiscordBot {
+public class DiscordBot implements Bot{
 
     private final String token;
 
     private GatewayDiscordClient client;
 
-    public DiscordBot(String token) {
+    private final Handler handler;
+
+    public DiscordBot(String token, Handler handler) {
         this.token = token;
+        this.handler = handler;
     }
 
     /**
      * Запустить Дискорд бота
      */
+    @Override
     public void start() {
         client = DiscordClient.create(token).login().block();
         if (client == null) {
@@ -40,7 +44,11 @@ public class DiscordBot {
                     if (isUser) {
                         String chatId = eventMessage.getChannelId().asString();
                         String messageFromUser = eventMessage.getContent();
-                        // TODO обработайте сообщение от пользователя (messageFromUser)
+                        String reply = handler.handle(messageFromUser);
+
+                        if (reply != null && !reply.isEmpty()) {
+                            sendMessage(chatId, reply);
+                        }
                     }
                 });
         System.out.println("Discord бот запущен");
