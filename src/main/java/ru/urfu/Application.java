@@ -6,13 +6,15 @@ package ru.urfu;
 public class Application {
 
     public static void main(String[] args) {
+        Handler handler = new Handler();
+
         String telegramBotName = System.getenv("telegram_botName");
         String telegramToken = System.getenv("telegram_token");
-        new TelegramBot(telegramBotName, telegramToken)
+        new TelegramBot(telegramBotName, telegramToken, handler)
                 .start();
 
         String discordToken = System.getenv("discord_token");
-        new DiscordBot(discordToken)
+        new DiscordBot(discordToken, handler)
                 .start();
 
         /*
@@ -20,5 +22,4 @@ public class Application {
          и все должны работать одинаково
         */
     }
-
 }
