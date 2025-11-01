@@ -1,20 +1,13 @@
 package ru.urfu;
 
 /**
- * Базовый интерфейс для обработчиков сообщений от пользователей
- * <br>
- * Благодаря этому интерфейсу
- * можно реализовать несколько разных обработчиков
- * и использовать их в разных ботах, а также менять обработчики,
- * не меняя код ботов.
- * @see TelegramBot
- * @see DiscordBot
+ * Обработчик сообщений от пользователя
  */
-public interface Handler {
+public class Handler {
     /**
      * Обработать сообщение от пользователя
-     * @param messageFromUser сообщение от пользователя
-     * @return ответ бота пользователю
      */
-    String handle(String messageFromUser);
+    public String handle(String messageFromUser) {
+        return "Ваше сообщение: '" + messageFromUser + "'";
+    }
 }

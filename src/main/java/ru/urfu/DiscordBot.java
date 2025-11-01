@@ -10,7 +10,7 @@ import discord4j.core.object.entity.channel.MessageChannel;
 /**
  * Дискорд бот
  */
-public class DiscordBot implements Bot{
+public class DiscordBot {
 
     private final String token;
 
@@ -26,7 +26,6 @@ public class DiscordBot implements Bot{
     /**
      * Запустить Дискорд бота
      */
-    @Override
     public void start() {
         client = DiscordClient.create(token).login().block();
         if (client == null) {

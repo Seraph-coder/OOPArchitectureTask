@@ -11,7 +11,7 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 /**
  * Телеграм бот
  */
-public class TelegramBot extends TelegramLongPollingBot implements Bot{
+public class TelegramBot extends TelegramLongPollingBot {
 
     private final String telegramBotName;
 
@@ -26,7 +26,6 @@ public class TelegramBot extends TelegramLongPollingBot implements Bot{
     /**
      * Запустить Телеграмм бота
      */
-    @Override
     public void start() {
         try {
             TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
